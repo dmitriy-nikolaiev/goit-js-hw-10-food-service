@@ -31,7 +31,7 @@ module.exports = env => ({
     port: 4040,
     noInfo: true,
     quiet: false,
-    clientLogLevel: 'info',
+    clientLogLevel: 'warn',
     stats: 'minimal',
     open: false,
   },
