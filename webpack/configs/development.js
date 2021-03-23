@@ -30,9 +30,9 @@ module.exports = env => ({
     compress: true,
     port: 4040,
     noInfo: true,
-    quiet: true,
-    clientLogLevel: 'warning',
-    stats: 'errors-only',
-    open: true,
+    quiet: false,
+    clientLogLevel: 'info',
+    stats: 'minimal',
+    open: false,
   },
 });
