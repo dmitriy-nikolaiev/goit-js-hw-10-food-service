@@ -1,4 +1,6 @@
 import './styles.css';
+import menuItems from './menu.json';
+import menuTemplate from './templates/menu.hbs';
 
 const Theme = {
   LIGHT: 'light-theme',
@@ -23,19 +25,11 @@ const setTheme = newTheme => {
 };
 
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === null) {
-  // localStorage.setItem('theme', Theme.LIGHT);
-  setTheme(Theme.LIGHT);
-} else {
-  setTheme(savedTheme);
-}
+setTheme(savedTheme ? savedTheme : Theme.LIGHT);
 
 themeSwitchRef.addEventListener('change', event => {
-  if (event.target.checked) {
-    setTheme(Theme.DARK);
-  } else {
-    setTheme(Theme.LIGHT);
-  }
+  setTheme(event.target.checked ? Theme.DARK : Theme.LIGHT);
 });
 
-// console.log(menuListRef);
+const menuHtmlData = menuItems.map(menuItem => menuTemplate(menuItem));
+menuListRef.insertAdjacentHTML('afterbegin', menuHtmlData.join(''));
