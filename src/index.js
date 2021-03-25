@@ -1,6 +1,6 @@
 import './styles.css';
 import menuItems from './menu.json';
-import menuTemplate from './templates/menu.hbs';
+import menuListTemplate from './templates/menu-list.hbs';
 
 const Theme = {
   LIGHT: 'light-theme',
@@ -10,6 +10,8 @@ const Theme = {
 const bodyRef = document.querySelector('body');
 const themeSwitchRef = bodyRef.querySelector('#theme-switch-toggle');
 const menuListRef = bodyRef.querySelector('ul.js-menu');
+
+menuListRef.innerHTML = menuListTemplate(menuItems);
 
 const setTheme = newTheme => {
   if (newTheme === Theme.LIGHT) {
@@ -30,6 +32,3 @@ setTheme(savedTheme ? savedTheme : Theme.LIGHT);
 themeSwitchRef.addEventListener('change', event => {
   setTheme(event.target.checked ? Theme.DARK : Theme.LIGHT);
 });
-
-const menuHtmlData = menuItems.map(menuItem => menuTemplate(menuItem));
-menuListRef.insertAdjacentHTML('afterbegin', menuHtmlData.join(''));
